@@ -1,30 +1,34 @@
 # Obstacle-Detector_prototype
 
 ## 1. [Overview](#overview)
-   ### 1. Idea from Chat-GPT
-        project_root/
-         │
-         ├── app/
-         │   ├── static/
-         │   │   ├── css/
-         │   │   │   └── styles.css
-         │   │   ├── js/
-         │   │   │   └── scripts.js
-         │   │   └── images/
-         │   ├── templates/
-         │   │   └── index.html
-         │   ├── __init__.py
-         │   ├── routes.py
-         │   └── openai_api.py
-         │   └── camera_capture.py
-         │
-         ├── models/
-         │   └── obstacle_detection_model.py
-         │
-         ├── config.py
-         ├── app.py
-         ├── requirements.txt
-         └── README.md
+  ### 1. Idea from Chat-GPT
+      project_root/
+        │
+        ├── app/
+        │   ├── static/
+        │   │   ├── css/
+        │   │   │   └── styles.css
+        │   │   ├── js/
+        │   │   │   └── scripts.js
+        │   │   └── images/
+        │   ├── templates/
+        │   │   └── index.html
+        │   ├── __init__.py
+        │   ├── routes.py
+        │   └── openai_api.py
+        │   └── camera_capture.py
+        │
+        ├── models/
+        │   └── obstacle_detection_model.py
+        │
+        ├── config.py
+        ├── app.py
+        ├── requirements.txt
+        └── README.md
+  ### 2. API Documentation
+    https://platform.openai.com/docs/guides/vision
+    https://qiita.com/kurata04/items/a10bdc44cc0d1e62dad3
+  ### 3. Note
 
 ## 2. How to run the project
 
@@ -82,4 +86,4 @@ python app.py
 ---
 
 以上がアプリケーションを起動するための手順です。もし途中でエラーが発生したり、何か問題があれば、その内容を教えてください。対応策を考えます。
-3. Appendix
+## 3. Appendix
