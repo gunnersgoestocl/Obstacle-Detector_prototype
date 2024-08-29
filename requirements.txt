@@ -2,3 +2,4 @@ Flask
 openai
 opencv-python
 requests
+flask-socketio

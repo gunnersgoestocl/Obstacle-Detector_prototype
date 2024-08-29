@@ -3,3 +3,4 @@ import os
 
 class Config:
     OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+    APP_KEY = os.getenv('APP_KEY')

@@ -4,11 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}" sizes="180x180">
     <title>Obstacle Detection</title>
 </head>
 <body>
     <h1>Welcome to Obstacle Detection App</h1>
-    <button id="captureButton">Capture and Analyze</button>
+    <button id="start-button">Start Camera and Analyze</button>
+    <button id="stop-button">Stop Camera</button>
+    <p id="message"></p>
+
+    <!-- Socket.IO のクライアントライブラリ -->
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 </body>
 </html>

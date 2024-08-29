@@ -1,29 +1,20 @@
 import cv2
+import time
+from flask_socketio import emit
+from .openai_api import analyze_image
 
-def capture_image():
-    """OpenCVを使ってカメラから画像をキャプチャし、それをサーバーに送信する"""
-    print("Now capturing image...")
-    # カメラデバイスの初期化（デフォルトのカメラはID 0）
-    cap = cv2.VideoCapture(0)   # 0: my iPhone
-    
-    if not cap.isOpened():
-        print("Device not found")
-        raise Exception("カメラデバイスにアクセスできません。")
-
-    # 画像のキャプチャ
-    ret, frame = cap.read()
-    print("Successfully captured image1.")
-    
-    if not ret:
-        print("Failed to capture image")
-        print(ret, frame)
-        raise Exception("画像のキャプチャに失敗しました。")
-    
-    # カメラを解放
+def camera_worker(socketio, capture_event):
+    latest_frame = None
+    cap = cv2.VideoCapture(0)
+    while not capture_event.is_set():
+        ret, frame = cap.read()
+        if ret:
+            latest_frame = frame
+            if latest_frame is not None:
+                # 画像をエンコードしてOpenAI APIで解析
+                result = analyze_image(cv2.imencode('.jpg', latest_frame)[1].tobytes())
+                
+                # OpenAIの結果をSocketIOでフロントエンドに送信
+                socketio.emit('update', {'message': result})
+        time.sleep(10)  # 10秒ごとに画像を取得
     cap.release()
-
-    # 画像データをエンコード（JPEGフォーマット）
-    _, buffer = cv2.imencode('.jpg', frame)
-
-    return buffer.tobytes()
-
