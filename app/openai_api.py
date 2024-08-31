@@ -10,7 +10,7 @@ def analyze_image(image_data):
     base64_image = base64.b64encode(image_data).decode('utf-8')
     
     # OpenAI APIにリクエストを送信
-    response = openai.ChatCompletion.create(
+    response = openai.chat.completions.create(
         model="gpt-4o-mini",
         messages=[
             {"role": "system", "content": "You are a helpful assistant."},
@@ -34,7 +34,7 @@ def analyze_image(image_data):
     )
     
     # 応答から生成されたテキストを取得
-    result = response['choices'][0]['message']['content']
+    result = response.choices[0].message.content
     return result
 
 """
