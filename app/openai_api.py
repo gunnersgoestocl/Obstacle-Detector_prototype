@@ -1,25 +1,27 @@
 """キャプチャされた画像をOpenAI APIまたは他の分析APIで処理"""
-import openai
+# from openai import OpenAI
+from openai import AzureOpenAI
 import base64
-from config import Config
-
-openai.api_key = Config.OPENAI_API_KEY
+# from config import Config
 
 def analyze_image(image_data):
+    print("Analyzing image...")
     # 画像データをBase64にエンコード
     base64_image = base64.b64encode(image_data).decode('utf-8')
+    client = AzureOpenAI() 
     
     # OpenAI APIにリクエストを送信
-    response = openai.chat.completions.create(
-        model="gpt-4o-mini",
+    response = client.chat.completions.create(
+        # model="gpt-4o-mini",
+        model="aoai-gpt-4o",
         messages=[
-            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "system", "content": "You are a helpful assistant of a blind man."},
             {
                 "role": "user",
                 "content": [
                     {
                         "type": "text",
-                        "text": "I am blind and walking. Please identify the obstacles in front of me using this picture and suggest a path to navigate through them within 20 words like 'Turn slightly right and walk forward, avoiding utility pole'. You don't need to to attach 'I can't analyze the photo directly.', please answer directly."
+                        "text": "I am walking. Please identify the obstacles in front of me using this picture and suggest a path to navigate through them within 20 words briefly. Action first, then short description of the obstacles. For example, 'Turn slightly right and walk forward, avoiding utility pole' or 'Stop immediately, a man is running toward you.'"
                     },
                     {
                         "type": "image_url",

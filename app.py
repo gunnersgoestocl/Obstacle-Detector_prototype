@@ -1,6 +1,7 @@
 """Flaskアプリケーションを起動するためのエントリーポイントがある"""
 
 from app import create_app,socketio
+# from app2 import create_app, socketio
 
 # Flaskアプリケーションのインスタンスを作成
 app = create_app()
